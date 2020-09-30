@@ -129,9 +129,9 @@ void bli_dgemm_power10_mma_8x8
 	   Illustration:
 					  
 			acc0 = [  vs0
-					  vs1
+				  vs1
 			          vs3
-					  vs4  ]
+				  vs4  ]
 
 		These registers are used to store the result of an outer product 
 		instruction (general outer product instruction syntax: xv???ger??). */
@@ -158,15 +158,13 @@ void bli_dgemm_power10_mma_8x8
 	vec_t *rb = (vec_t *) B0; 
 
 	/* Each accumulator represents a matrix of size 
-	   4 x ((datatype size in bytes) / 16)  (vector register size = 128b)
+	   4 x (16 / (datatype size in bytes))  (vector register size = 128b)
 
-	   Thus in the case of double, the accumulate registers represent a 4x2 
+	   In the case of double, the accumulate registers represent a 4x2 
 	   matrix. However, a vector register can hold at most 2 doubles. Thus, if
 	   we performed an outer product using 2 vector register, we can only get a 
 	   2x2 matrix. Therefore, we must create a vector register pair in order
-	   to get the desired 4x2 matrix.
-	
-	*/
+	   to get the desired 4x2 matrix. */
 	D_ASSEMBLE_VEC_PAIR
 
 	/* Compute accumulate outer products and override accumulators with result */
