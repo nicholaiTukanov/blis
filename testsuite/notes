@@ -1,0 +1,19 @@
+arm
+
+fma 
+latency    - 4 (w port forwarding) / 9 (w/out)
+throughput - 2
+vector size - 128b
+
+2 * 4 * 2.5 = 20 gflops
+
+
+l1 size 64 kb
+l2 size 1 mb
+
+l1 4 way
+l2 8 way
+
+dgemm params
+mc = 384
+kc = 256

@@ -1,0 +1,11 @@
+% blis_<dt><op>_<params>_<stor>      m     n     k   gflops   resid      result
+blis_dgemm_nn_ccc                  100   100   100    14.94   1.44e-17   PASS
+blis_dgemm_nn_ccc                  200   200   200    16.82   8.62e-18   PASS
+blis_dgemm_nn_ccc                  300   300   300    16.83   7.11e-18   PASS
+blis_dgemm_nn_ccc                  400   400   400    17.69   1.10e-17   PASS
+blis_dgemm_nn_ccc                  500   500   500    17.56   8.76e-18   PASS
+blis_dgemm_nn_ccc                  600   600   600    18.06   1.01e-17   PASS
+blis_dgemm_nn_ccc                  700   700   700    17.85   1.35e-17   PASS
+blis_dgemm_nn_ccc                  800   800   800    18.09   1.46e-17   PASS
+blis_dgemm_nn_ccc                  900   900   900    17.92   9.26e-18   PASS
+blis_dgemm_nn_ccc                 1000  1000  1000    18.31   5.00e-18   PASS
