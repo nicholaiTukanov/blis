@@ -1,0 +1,21 @@
+% blis_<dt><op>_<params>_<stor>      m     n     k   gflops   resid      result
+blis_sgemm_nn_ccc                 1000  1000  1000  1711.27   2.77e-09   PASS
+blis_sgemm_nn_ccc                 1500  1500  1500  2026.75   5.08e-09   PASS
+blis_sgemm_nn_ccc                 2000  2000  2000  2157.52   3.82e-09   PASS
+blis_sgemm_nn_ccc                 2500  2500  2500  2151.81   5.28e-09   PASS
+blis_sgemm_nn_ccc                 3000  3000  3000  2267.84   6.94e-09   PASS
+blis_sgemm_nn_ccc                 3500  3500  3500  2229.32   4.33e-09   PASS
+blis_sgemm_nn_ccc                 4000  4000  4000  2309.68   2.73e-09   PASS
+blis_sgemm_nn_ccc                 4500  4500  4500  2281.41   3.19e-09   PASS
+blis_sgemm_nn_ccc                 5000  5000  5000  2358.20   3.73e-09   PASS
+
+% blis_<dt><op>_<params>_<stor>      m     n     k   gflops   resid      result
+blis_dgemm_nn_ccc                 1000  1000  1000   940.92   5.19e-18   PASS
+blis_dgemm_nn_ccc                 1500  1500  1500  1018.47   9.54e-18   PASS
+blis_dgemm_nn_ccc                 2000  2000  2000  1057.76   6.98e-18   PASS
+blis_dgemm_nn_ccc                 2500  2500  2500  1054.71   1.05e-17   PASS
+blis_dgemm_nn_ccc                 3000  3000  3000  1089.90   1.25e-17   PASS
+blis_dgemm_nn_ccc                 3500  3500  3500  1079.20   8.21e-18   PASS
+blis_dgemm_nn_ccc                 4000  4000  4000  1092.65   5.02e-18   PASS
+blis_dgemm_nn_ccc                 4500  4500  4500   993.73   5.98e-18   PASS
+blis_dgemm_nn_ccc                 5000  5000  5000  1044.21   6.84e-18   PASS
