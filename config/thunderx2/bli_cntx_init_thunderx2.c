@@ -57,8 +57,8 @@ void bli_cntx_init_thunderx2( cntx_t* cntx )
 	//                                           s      d      c      z
 	bli_blksz_init_easy( &blkszs[ BLIS_MR ],     8,     6,    -1,    -1 );
 	bli_blksz_init_easy( &blkszs[ BLIS_NR ],    12,     8,    -1,    -1 );
-	bli_blksz_init_easy( &blkszs[ BLIS_MC ],   120,   384,    -1,    -1 );
-	bli_blksz_init_easy( &blkszs[ BLIS_KC ],   640,   256,    -1,    -1 );
+	bli_blksz_init_easy( &blkszs[ BLIS_MC ],   192,   384,    -1,    -1 );
+	bli_blksz_init_easy( &blkszs[ BLIS_KC ],   512,   256,    -1,    -1 );
 	bli_blksz_init_easy( &blkszs[ BLIS_NC ],  3072,  3072,    -1,    -1 );
 
 	// Update the context with the current architecture's register and cache
