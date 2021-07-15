@@ -5,7 +5,7 @@
 # 2nd - BLIS_JR_NT (n)
 # 1st - BLIS_IR_NT (m)
 
-for j in 2 4 8 16 32
+for j in 2 4 8 16 32 
 do
     ((i=64/$j))
     export BLIS_IC_NT=${j}

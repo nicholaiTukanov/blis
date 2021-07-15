@@ -86,44 +86,14 @@ endif
 #
 
 # BLAS library path(s). This is where the BLAS libraries reside.
-HOME_LIB_PATH  := $(HOME)/flame/lib
+HOME_LIB_PATH  := $(HOME)/lib
 
 # OpenBLAS
 OPENBLAS_LIB   := $(HOME_LIB_PATH)/libopenblas.a
 OPENBLASP_LIB  := $(HOME_LIB_PATH)/libopenblasp.a
 
-# ATLAS
-#ATLAS_LIB      := $(HOME_LIB_PATH)/libf77blas.a \
-#                  $(HOME_LIB_PATH)/libatlas.a
-
-# Eigen
-EIGEN_INC      := $(HOME)/flame/eigen/include/eigen3
-EIGEN_LIB      := $(HOME_LIB_PATH)/libeigen_blas_static.a
-EIGENP_LIB     := $(EIGEN_LIB)
-
-# MKL
-MKL_LIB_PATH   := $(HOME)/intel/mkl/lib/intel64
-MKL_LIB        := -L$(MKL_LIB_PATH) \
-                  -lmkl_intel_lp64 \
-                  -lmkl_core \
-                  -lmkl_sequential \
-                  -lpthread -lm -ldl
-#MKLP_LIB       := -L$(MKL_LIB_PATH) \
-#                  -lmkl_intel_thread \
-#                  -lmkl_core \
-#                  -lmkl_intel_ilp64 \
-#                  -L$(ICC_LIB_PATH) \
-#                  -liomp5
-MKLP_LIB       := -L$(MKL_LIB_PATH) \
-                  -lmkl_intel_lp64 \
-                  -lmkl_core \
-                  -lmkl_gnu_thread \
-                  -lpthread -lm -ldl -fopenmp
-                  #-L$(ICC_LIB_PATH) \
-                  #-lgomp
-
-VENDOR_LIB     := $(MKL_LIB)
-VENDORP_LIB    := $(MKLP_LIB)
+VENDOR_LIB     := 
+VENDORP_LIB    := 
 
 
 #
@@ -218,34 +188,33 @@ PDEF_1S  := -DP_BEGIN=$(P1_BEGIN) -DP_INC=$(P1_INC) -DP_MAX=$(P1_MAX)
 PDEF_2S  := -DP_BEGIN=$(P2_BEGIN) -DP_INC=$(P2_INC) -DP_MAX=$(P2_MAX)
 
 
-
 #
 # --- Targets/rules ------------------------------------------------------------
 #
 
-all:        all-st all-1s all-2s
-blis:       blis-st blis-1s blis-2s
-openblas:   openblas-st openblas-1s openblas-2s
-eigen:      eigen-st eigen-1s eigen-2s
-vendor:     vendor-st vendor-1s vendor-2s
-mkl:        vendor
+all:        all-st all-1s # all-2s
+blis:       blis-st blis-1s # blis-2s
+openblas:   openblas-st openblas-1s # openblas-2s
+# eigen:      eigen-st eigen-1s # eigen-2s
+vendor:     vendor-st vendor-1s # vendor-2s
+# mkl:        vendor
 armpl:      vendor
 
-all-st:     blis-st openblas-st mkl-st eigen-st
-all-1s:     blis-1s openblas-1s mkl-1s eigen-1s
-all-2s:     blis-2s openblas-2s mkl-2s eigen-2s
+all-st:     blis-st openblas-st #vendor-st
+all-1s:     blis-1s openblas-1s #vendor-1s
+#all-2s:     blis-2s openblas-2s mkl-2s eigen-2s
 
 blis-st:    blis-nat-st
 blis-1s:    blis-nat-1s
-blis-2s:    blis-nat-2s
+#blis-2s:    blis-nat-2s
 
 #blis-ind:   blis-ind-st blis-ind-mt
 blis-nat:   blis-nat-st blis-nat-1s blis-nat-2s
 
 # Define the datatypes, operations, and implementations.
-DTS    := s d c z
+DTS    := s d # c z
 OPS    := gemm hemm herk trmm trsm
-BIMPLS := asm_blis openblas vendor
+BIMPLS := asm_blis openblas #vendor
 EIMPLS := eigen
 
 # Define functions to construct object filenames from the datatypes and

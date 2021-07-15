@@ -10,7 +10,8 @@ delay=0.1
 #sys="lonestar5"
 #sys="ul252"
 #sys="ul264"
-sys="ul2128"
+#sys="ul2128"
+sys="thunderx2"
 
 # Bind threads to processors.
 #export OMP_PROC_BIND=true
@@ -77,15 +78,20 @@ elif [ ${sys} = "ul2128" ]; then
 	threads="jc1ic1jr1_2400
 	         jc4ic4jr4_6000
 	         jc8ic4jr4_8000"
-	#threads="jc4ic4jr4_6000
-	#         jc8ic4jr4_8000"
-	#threads="jc1ic1jr1_2400"
-	#threads="jc4ic4jr4_6000"
-	#threads="jc8ic4jr4_8000"
+
+elif [ ${sys} = "thunderx2" ]; then
+
+	export GOMP_CPU_AFFINITY="0-63"
+
+	numactl=""
+	threads="jc1ic1jr1_2400
+	         jc64ic1jr1_6000"
+
+
 fi
 
 # Datatypes to test.
-test_dts="d s z c"
+test_dts="d s"
 #test_dts="s"
 
 # Operations to test.
@@ -94,11 +100,11 @@ test_ops="gemm hemm herk trmm trsm"
 
 # Implementations to test.
 #impls="blis"
-#impls="openblas"
+impls="openblas"
 #impls="vendor"
 #impls="other"
 #impls="eigen"
-impls="all"
+# impls="all"
 
 if [ "${impls}" = "blis" ]; then
 
@@ -198,11 +204,12 @@ for th in ${threads}; do
 					# that we are preparing to run.
 					if   [ "${im}" = "asm_blis" ]; then
 						unset  OMP_NUM_THREADS
-						export BLIS_JC_NT=${jc_nt}
-						export BLIS_PC_NT=${pc_nt}
-						export BLIS_IC_NT=${ic_nt}
-						export BLIS_JR_NT=${jr_nt}
-						export BLIS_IR_NT=${ir_nt}
+						# export BLIS_JC_NT=${jc_nt}
+						# export BLIS_PC_NT=${pc_nt}
+						# export BLIS_IC_NT=${ic_nt}
+						# export BLIS_JR_NT=${jr_nt}
+						# export BLIS_IR_NT=${ir_nt}
+						export BLIS_NUM_THREADS=${nt}
 					elif [ "${im}" = "openblas" ]; then
 						unset  OMP_NUM_THREADS
 						export OPENBLAS_NUM_THREADS=${nt}
@@ -225,11 +232,12 @@ for th in ${threads}; do
 					fi
 				else
 
-					export BLIS_JC_NT=1
-					export BLIS_PC_NT=1
-					export BLIS_IC_NT=1
-					export BLIS_JR_NT=1
-					export BLIS_IR_NT=1
+					# export BLIS_JC_NT=1
+					# export BLIS_PC_NT=1
+					# export BLIS_IC_NT=1
+					# export BLIS_JR_NT=1
+					# export BLIS_IR_NT=1
+					export BLIS_NUM_THREADS=1
 					export OMP_NUM_THREADS=1
 					export OPENBLAS_NUM_THREADS=1
 					export MKL_NUM_THREADS=1
